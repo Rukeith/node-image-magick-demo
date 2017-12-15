@@ -8,7 +8,7 @@ const { execFile } = require('child_process');
 
 const s3 = new AWS.S3({ region: 'ap-northeast-1' });
 const params = {
-  ACL: 'public-read-write',
+  ContentType: 'image/jpeg',
   Bucket: `${process.env.S3_BUCKET}`,
 };
 
@@ -25,12 +25,17 @@ app.post('/mark', (req, res) => {
       if (error) {
         throw new Error(error);
       }
-      params.Body = fs.createReadStream(`./${filename}`);
+      params.Body = fs.createReadStream(filename);
       s3.upload(params, (err) => {
         if (err) {
           throw new Error(err);
         }
-        res.status(HTTPStatus.OK).json({ url: `${process.env.IMAGE_URL}/${filename}` });
+        fs.unlink(filename, (errfs) => {
+          if (errfs) {
+            throw new Error(errfs);
+          }
+          res.status(HTTPStatus.OK).json({ url: `${process.env.IMAGE_URL}/${filename}` });
+        });
       });
     });
   } catch (error) {
