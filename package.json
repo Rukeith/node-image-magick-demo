@@ -1,0 +1,26 @@
+{
+  "name": "node-image-magick-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": "https://github.com/Rukeith/node-image-magick-demo.git",
+  "author": "rukeith <rukeith@no8.io>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.170.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "http-status": "^1.0.1",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.12.7"
+  }
+}
