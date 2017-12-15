@@ -2,7 +2,7 @@ const fs = require('fs');
 const AWS = require('aws-sdk');
 const uuid = require('uuid/v4');
 const express = require('express');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const HTTPStatus = require('http-status');
 const { execFile } = require('child_process');
 
@@ -13,8 +13,13 @@ const params = {
 };
 
 const app = express();
-app.use(bodyparser());
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+/**
+ * @param {String} to
+ * @param {String} from
+ * @param {String} imageUrl
+ */
 app.post('/mark', (req, res) => {
   const filename = `${uuid()}.jpg`;
   const { to, from, imageUrl } = req.body;
