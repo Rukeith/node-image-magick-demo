@@ -1,0 +1,1 @@
+# node-image-magick-demo
